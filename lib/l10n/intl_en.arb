@@ -1,0 +1,21 @@
+{
+    
+    "hey_there":"Hey There,",
+    "welcome_back":"Welcome Back",
+    "signin":"Signin",
+    "reset":"Reset",
+    "email":"Email",
+    "password":"Password",
+    "register":"Register",
+    "confirm_password":"Confirm Password",
+    "forgot_password":"Forgot your password?",
+    "reset_password":"Reset password",
+    "invalid_email":"Invalid email!",
+    "invalid_password":"Password is too short!",
+    "invalid_first_name":"Invalid first name",
+    "invalid_last_name":"Invalid last name",
+    "create_an_account":"Create an Account",
+    "first_name":"First Name",
+    "last_name":"Last Name",
+    "back":"Back"
+}
