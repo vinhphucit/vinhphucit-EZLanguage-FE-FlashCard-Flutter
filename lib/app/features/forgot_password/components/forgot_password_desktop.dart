@@ -1,17 +1,28 @@
-import 'package:fe_ezlang_flashcard/app/config/resources/colours.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
-import 'package:fe_ezlang_flashcard/app/features/forgot_password/forgot_password_screen.dart';
+import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_button.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_text_field.dart';
 import 'package:fe_ezlang_flashcard/app/utils/extensions/get_string_ex.dart';
 import 'package:fe_ezlang_flashcard/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPasswordDesktop extends StatelessWidget {
-  ForgotPasswordDesktop({Key? key}) : super(key: key);
-  String? email, password;
+  Function(String email) callback;
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  ForgotPasswordDesktop({Key? key, required this.callback}) : super(key: key);
+  String? email;
+
+  Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    _formKey.currentState!.save();
+
+    await callback(email!);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,26 +76,32 @@ class ForgotPasswordDesktop extends StatelessWidget {
                         height: Dimens.mm,
                       ),
                       Form(
+                        key: _formKey,
                         child: Column(children: [
-                          FormTextField(
-                            hintText: S.of(context).email,
-                            icon: Icons.email,
-                            defaultFocus: true,
-                            onSaved: (value) => email = value,
-                            validator: (value) {
-                              if (value?.isEmpty ??
-                                  false || !(value ?? '').contains('@')) {
-                                return S.of(context).invalid_email;
-                              }
-                              return null;
-                            },
+                          Consumer<ForgotPasswordController>(
+                            builder: (context, value, child) => FormTextField(
+                              hintText: S.of(context).email,
+                              icon: Icons.email,
+                              disabled: value.isLoading,
+                              defaultFocus: true,
+                              onSaved: (value) => email = value,
+                              validator: (value) {
+                                if (!(value as String).isValidEmail) {
+                                  return S.of(context).invalid_email;
+                                }
+                                return null;
+                              },
+                            ),
                           ),
                           const SizedBox(
                             height: Dimens.mm,
                           ),
-                          FormButton(
-                              text: S.of(context).send_instruction,
-                              callback: () {}),
+                          Consumer<ForgotPasswordController>(
+                            builder: (context, value, child) => FormButton(
+                                isLoading: value.isLoading,
+                                text: S.of(context).send_instruction,
+                                callback: _submit),
+                          )
                         ]),
                       ),
                     ],

@@ -32,4 +32,9 @@ class RemoteAdminRepo implements AuthDataSource {
       String email, String password, String firstName, String lastName) async {
     return await _adminApiService.signUp(email, password, firstName, lastName);
   }
+
+  @override
+  Future<void> requestResetPassword(String email) async {
+    return await _adminApiService.requestResetPassword(email);
+  }
 }

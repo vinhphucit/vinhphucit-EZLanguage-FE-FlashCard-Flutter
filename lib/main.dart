@@ -6,6 +6,7 @@ import 'package:fe_ezlang_flashcard/app/features/signin/signin_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/signup/signup_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/splash/splash_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/app_controller.dart';
+import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,9 @@ class FlashCardApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SignInController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ForgotPasswordController(),
         )
       ],
       child: MaterialApp(
@@ -39,7 +43,7 @@ class FlashCardApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        home: SplashScreen(),
+        home: const SplashScreen(),
         theme: AppTheme.basic,
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),

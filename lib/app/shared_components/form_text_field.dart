@@ -66,9 +66,9 @@ class _FormTextFieldState extends State<FormTextField> {
           ),
           border: InputBorder.none,
           hintText: widget.hintText,
-          contentPadding: widget.icon == null
-              ? const EdgeInsets.only(top: 2, left: 12)
-              : const EdgeInsets.only(top: 13),
+          // contentPadding: widget.icon == null
+          //     ? const EdgeInsets.only(top: 2, left: 12)
+          //     : const EdgeInsets.only(top: 13),
           prefixIcon: widget.icon == null
               ? null
               : Icon(

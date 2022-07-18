@@ -27,7 +27,7 @@ abstract class BaseApiService {
     return returnResponse(response);
   }
 
-  Future<dynamic> post(String url, dynamic body) async {
+  Future<dynamic> post(String url, [dynamic body]) async {
     final uri = Uri.parse(url);
     var token = await accessToken;
     var rqBody = (body == null ? null : json.encode(body));

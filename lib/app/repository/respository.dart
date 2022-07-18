@@ -34,4 +34,9 @@ class Repository implements AuthDataSource {
       String email, String password, String firstName, String lastName) async {
     return await remoteAdminRepo.signUp(email, password, firstName, lastName);
   }
+
+  @override
+  Future<void> requestResetPassword(String email) async {
+    return await remoteAdminRepo.requestResetPassword(email);
+  }
 }
