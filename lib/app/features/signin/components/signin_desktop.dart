@@ -1,18 +1,39 @@
 import 'package:fe_ezlang_flashcard/app/config/resources/colours.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
+import 'package:fe_ezlang_flashcard/app/config/resources/styles.dart';
 import 'package:fe_ezlang_flashcard/app/features/forgot_password/forgot_password_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/signup/signup_screen.dart';
+import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_button.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_text_field.dart';
-import 'package:fe_ezlang_flashcard/app/utils/extensions/get_string_ex.dart';
 import 'package:fe_ezlang_flashcard/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:fe_ezlang_flashcard/app/utils/extensions/get_string_ex.dart';
+import 'package:provider/provider.dart';
 
-class SignInDesktop extends StatelessWidget {
-  SignInDesktop({Key? key}) : super(key: key);
+class SignInDesktop extends StatefulWidget {
+  Function(String email, String password) callback;
+  SignInDesktop({Key? key, required this.callback}) : super(key: key);
+
+  @override
+  State<SignInDesktop> createState() => _SignInDesktopState();
+}
+
+class _SignInDesktopState extends State<SignInDesktop> {
   String? email, password;
+
+  final GlobalKey<FormState> _formKey = GlobalKey();
+
+  Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    _formKey.currentState!.save();
+
+    await widget.callback(email!, password!);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,35 +41,36 @@ class SignInDesktop extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: Dimens.lm,
             ),
             Text(
               S.of(context).hey_there,
-              style: TextStyle(fontSize: Dimens.lts),
+              style: const TextStyle(fontSize: Dimens.lts),
             ),
-            SizedBox(
+            const SizedBox(
               height: Dimens.sm,
             ),
             Align(
               child: Text(S.of(context).welcome_back,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: Dimens.xlts)),
             ),
-            SizedBox(
+            const SizedBox(
               height: Dimens.mm,
             ),
             Padding(
               padding: const EdgeInsets.all(Dimens.lp),
               child: Form(
+                key: _formKey,
                 child: Column(children: [
                   FormTextField(
+                    defaultFocus: true,
                     hintText: S.of(context).email,
                     icon: Icons.email,
                     onSaved: (value) => email = value,
                     validator: (value) {
-                      if (value?.isEmpty ??
-                          false || !(value ?? '').contains('@')) {
+                      if (!(value as String).isValidEmail) {
                         return S.of(context).invalid_email;
                       }
                       return null;
@@ -57,75 +79,64 @@ class SignInDesktop extends StatelessWidget {
                   const SizedBox(
                     height: Dimens.mm,
                   ),
-                  FormTextField(
-                    hintText: S.of(context).password,
-                    icon: Icons.lock,
-                    isObscured: true,
-                    onSaved: (value) => password = password,
-                    validator: (value) {
-                      if (value?.isEmpty ?? false || (value?.length ?? 0) < 5) {
-                        return S.of(context).invalid_password;
-                      }
-                    },
+                  Consumer<SignInController>(
+                    builder: (context, value, child) => FormTextField(
+                      hintText: S.of(context).password,
+                      icon: Icons.lock,
+                      isObscured: true,
+                      disabled: value.isLoading,
+                      defaultFocus: true,
+                      onSaved: (value) => password = value,
+                      validator: (value) {
+                        if ((value?.isEmpty ?? false) ||
+                            (value?.length ?? 0) < 5) {
+                          return S.of(context).invalid_password;
+                        }
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: Dimens.sm,
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(ForgotPasswordScreen.routeName);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(Dimens.mp),
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(ForgotPasswordScreen.routeName);
+                        },
                         child: Text(
                           S.of(context).forgot_password,
-                          style: TextStyle(
-                            color: Colours.tf_text,
-                            decoration: TextDecoration.underline,
-                            fontSize: Dimens.mts,
-                          ),
-                        ),
-                      ),
+                          style: Styles.commonText
+                              .copyWith(decoration: TextDecoration.underline),
+                        )),
+                  ),
+                  const SizedBox(
+                    height: Dimens.sm,
+                  ),
+                  Consumer<SignInController>(
+                    builder: (context, value, child) => FormButton(
+                      isLoading: value.isLoading,
+                      text: S.of(context).signin,
+                      callback: _submit,
                     ),
                   ),
-                  SizedBox(
-                    height: Dimens.mm,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(S.of(context).signin,
-                          style: TextStyle(
-                              color: Colours.tf_text,
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal)),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(Dimens.m_radius),
-                      ),
-                      primary: Colors.black,
-                      minimumSize: Size(size.width, 50),
-                    ),
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Don’t have an account yet? '),
+                      Text(S.of(context).do_not_have_account),
                       TextButton(
                           onPressed: () {
                             Navigator.of(context)
                                 .pushNamed(SignUpScreen.routeName);
                           },
                           child: Text(
-                            'Register',
-                            style: TextStyle(
-                              color: Color(0xffC58BF2),
-                              // color: const Color(0xffC58BF2),
+                            S.of(context).register,
+                            style: const TextStyle(
+                              color: Colours.specialLink,
                               fontSize: Dimens.lts,
                             ),
                           ))

@@ -11,39 +11,50 @@ class FormTextField extends StatefulWidget {
   TextEditingController? controller;
   FormFieldSetter<String>? onSaved;
   ValueChanged<String>? onChanged;
+  bool? defaultFocus;
+  bool? disabled;
   FormTextField({
     Key? key,
     required String this.hintText,
     FormFieldValidator? this.validator,
     TextEditingController? this.controller,
-    ValueChanged<String>? onChanged,
-    FormFieldSetter<String>? onSaved,
+    ValueChanged<String>? this.onChanged,
+    FormFieldSetter<String>? this.onSaved,
+    bool? this.defaultFocus,
     IconData? this.icon,
     bool? this.isObscured,
     bool? this.pwVisible,
+    bool? this.disabled,
   }) : super(key: key);
 
   @override
-  State<FormTextField> createState() => _FormTextFieldState();
+  State<FormTextField> createState() {
+    return _FormTextFieldState();
+  }
 }
 
 class _FormTextFieldState extends State<FormTextField> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: Dimens.sp),
-      // width: size.width * 0.9,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: const BorderRadius.all(Radius.circular(Dimens.m_radius)),
-      ),
-      child: TextFormField(
-        controller: widget.controller,
-        style: TextStyle(
-          color: Colours.tf_text,
+    return Stack(children: [
+      Container(
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: Dimens.sp),
+        // width: size.width * 0.9,
+        decoration: const BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.all(Radius.circular(Dimens.mRadius)),
         ),
+      ),
+      TextFormField(
+        controller: widget.controller,
+        style: const TextStyle(
+          color: Colours.tfText,
+        ),
+        autofocus: widget.defaultFocus ?? false,
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
+        enabled: !(widget.disabled ?? false),
         validator: widget.validator,
         textInputAction: TextInputAction.next,
         obscureText:
@@ -51,18 +62,18 @@ class _FormTextFieldState extends State<FormTextField> {
         decoration: InputDecoration(
           errorStyle: const TextStyle(height: 0),
           hintStyle: const TextStyle(
-            color: Colours.tf_text,
+            color: Colours.tfText,
           ),
           border: InputBorder.none,
           hintText: widget.hintText,
           contentPadding: widget.icon == null
-              ? EdgeInsets.only(top: 2, left: 12)
-              : EdgeInsets.only(top: 13),
+              ? const EdgeInsets.only(top: 2, left: 12)
+              : const EdgeInsets.only(top: 13),
           prefixIcon: widget.icon == null
               ? null
               : Icon(
                   widget.icon,
-                  color: Colours.tf_icon,
+                  color: Colours.tfIcon,
                 ),
           suffixIcon: widget.isObscured ?? false
               ? InkWell(
@@ -74,16 +85,16 @@ class _FormTextFieldState extends State<FormTextField> {
                   child: widget.pwVisible ?? false
                       ? const Icon(
                           Icons.visibility_off_outlined,
-                          color: Colours.tf_icon,
+                          color: Colours.tfIcon,
                         )
                       : const Icon(
                           Icons.visibility_outlined,
-                          color: Colours.tf_icon,
+                          color: Colours.tfIcon,
                         ),
                 )
               : null,
         ),
       ),
-    );
+    ]);
   }
 }

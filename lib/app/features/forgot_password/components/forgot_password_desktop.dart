@@ -17,94 +17,81 @@ class ForgotPasswordDesktop extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimens.sp, vertical: Dimens.sp),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Row(children: [
-                      Icon(Icons.arrow_back),
-                      Padding(
-                        padding: EdgeInsets.only(left: Dimens.sp),
-                        child: Text(S.of(context).back),
-                      )
-                    ]),
-                  ),
-                ],
+        child: Stack(children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: Dimens.mp, vertical: Dimens.mp),
+            child: Row(
+              children: [
+                InkWell(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Row(children: [
+                    const Icon(Icons.arrow_back),
+                    Padding(
+                      padding: const EdgeInsets.only(left: Dimens.sp),
+                      child: Text(S.of(context).back),
+                    )
+                  ]),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: Dimens.xxlm,
               ),
-            ),
-            SizedBox(
-              height: Dimens.lm,
-            ),
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Dimens.lp),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(S.of(context).reset_password,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: Dimens.xlts)),
-                    ),
-                    SizedBox(
-                      height: Dimens.mm,
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Forgot your password? That's okay, it happens to everyone!\nPlease provide your email to reset your password.",
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: Dimens.lp),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(S.of(context).reset_password,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: Dimens.xlts)),
                       ),
-                    ),
-                    SizedBox(
-                      height: Dimens.mm,
-                    ),
-                    Form(
-                      child: Column(children: [
-                        FormTextField(
-                          hintText: S.of(context).email,
-                          icon: Icons.email,
-                          onSaved: (value) => email = value,
-                          validator: (value) {
-                            if (value?.isEmpty ??
-                                false || !(value ?? '').contains('@')) {
-                              return S.of(context).invalid_email;
-                            }
-                            return null;
-                          },
+                      const SizedBox(
+                        height: Dimens.mm,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          S.of(context).forgot_password_consolation,
                         ),
-                        SizedBox(
-                          height: Dimens.mm,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(S.of(context).reset,
-                                style: TextStyle(
-                                    color: Colours.tf_text,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.normal)),
+                      ),
+                      const SizedBox(
+                        height: Dimens.mm,
+                      ),
+                      Form(
+                        child: Column(children: [
+                          FormTextField(
+                            hintText: S.of(context).email,
+                            icon: Icons.email,
+                            defaultFocus: true,
+                            onSaved: (value) => email = value,
+                            validator: (value) {
+                              if (value?.isEmpty ??
+                                  false || !(value ?? '').contains('@')) {
+                                return S.of(context).invalid_email;
+                              }
+                              return null;
+                            },
                           ),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(Dimens.m_radius),
-                            ),
-                            primary: Colors.black,
-                            minimumSize: Size(size.width, 50),
+                          const SizedBox(
+                            height: Dimens.mm,
                           ),
-                        ),
-                      ]),
-                    ),
-                  ],
-                ))
-          ],
-        ),
+                          FormButton(
+                              text: S.of(context).send_instruction,
+                              callback: () {}),
+                        ]),
+                      ),
+                    ],
+                  ))
+            ],
+          ),
+        ]),
       ),
     );
   }

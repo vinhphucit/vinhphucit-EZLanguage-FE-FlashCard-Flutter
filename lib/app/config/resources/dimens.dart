@@ -6,11 +6,13 @@ class Dimens {
   static const sm = 8.0;
   static const mm = 16.0;
   static const lm = 24.0;
+  static const xlm = 36.0;
+  static const xxlm = 64.0;
 
   static const sts = 12.0;
   static const mts = 16.0;
   static const lts = 20.0;
   static const xlts = 30.0;
 
-  static const m_radius = 15.0;
+  static const mRadius = 15.0;
 }

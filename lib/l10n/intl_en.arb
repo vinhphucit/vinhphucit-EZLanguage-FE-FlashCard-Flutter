@@ -7,9 +7,10 @@
     "email":"Email",
     "password":"Password",
     "register":"Register",
+    "confirm":"Confirm",
     "confirm_password":"Confirm Password",
     "forgot_password":"Forgot your password?",
-    "reset_password":"Reset password",
+    "reset_password":"Reset password",    
     "invalid_email":"Invalid email!",
     "invalid_password":"Password is too short!",
     "invalid_first_name":"Invalid first name",
@@ -17,5 +18,13 @@
     "create_an_account":"Create an Account",
     "first_name":"First Name",
     "last_name":"Last Name",
-    "back":"Back"
+    "back":"Back",
+    "toc_head":"By creating an account, you agree to our ",
+    "toc_and":" and ",
+    "toc_conditions_of_use":"Conditions of Use",
+    "toc_privacy_notice":"Privacy Notice",
+    "do_not_have_account":"Don’t have an account yet? ",
+    "forgot_password_consolation":"Forgot your password? That's okay, it happens to everyone!\nPlease provide your email to reset your password.",
+    "send_instruction":"Send Instruction"
+    
 }

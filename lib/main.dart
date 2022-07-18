@@ -1,3 +1,4 @@
+//refer to fd-project-management-master
 import 'package:fe_ezlang_flashcard/app/config/themes/app_theme.dart';
 import 'package:fe_ezlang_flashcard/app/features/dashboard/dashboard_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/forgot_password/forgot_password_screen.dart';
@@ -5,6 +6,7 @@ import 'package:fe_ezlang_flashcard/app/features/signin/signin_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/signup/signup_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/splash/splash_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/app_controller.dart';
+import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,6 +26,9 @@ class FlashCardApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AppController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SignInController(),
         )
       ],
       child: MaterialApp(

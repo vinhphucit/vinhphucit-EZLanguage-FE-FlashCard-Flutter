@@ -86,4 +86,16 @@ extension GetStringUtils on String {
     final path = startsWith('/') ? this : '/$this';
     return GetUtils.createPath(path, segments);
   }
+
+  bool get isValidEmail {
+    String pattern =
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?)*$";
+    RegExp regex = RegExp(pattern);
+    if (this == null || this.isEmpty || !regex.hasMatch(this))
+      return false;
+    else
+      return true;
+  }
 }

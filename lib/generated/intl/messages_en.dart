@@ -23,14 +23,19 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "back": MessageLookupByLibrary.simpleMessage("Back"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "create_an_account":
             MessageLookupByLibrary.simpleMessage("Create an Account"),
+        "do_not_have_account":
+            MessageLookupByLibrary.simpleMessage("Don’t have an account yet? "),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "first_name": MessageLookupByLibrary.simpleMessage("First Name"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
+        "forgot_password_consolation": MessageLookupByLibrary.simpleMessage(
+            "Forgot your password? That\'s okay, it happens to everyone!\nPlease provide your email to reset your password."),
         "hey_there": MessageLookupByLibrary.simpleMessage("Hey There,"),
         "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email!"),
         "invalid_first_name":
@@ -45,7 +50,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Reset password"),
+        "send_instruction":
+            MessageLookupByLibrary.simpleMessage("Send Instruction"),
         "signin": MessageLookupByLibrary.simpleMessage("Signin"),
+        "toc_and": MessageLookupByLibrary.simpleMessage(" and "),
+        "toc_conditions_of_use":
+            MessageLookupByLibrary.simpleMessage("Conditions of Use"),
+        "toc_head": MessageLookupByLibrary.simpleMessage(
+            "By creating an account, you agree to our "),
+        "toc_privacy_notice":
+            MessageLookupByLibrary.simpleMessage("Privacy Notice"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome Back")
       };
 }

@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm Password`
   String get confirm_password {
     return Intl.message(
@@ -225,6 +235,76 @@ class S {
     return Intl.message(
       'Back',
       name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By creating an account, you agree to our `
+  String get toc_head {
+    return Intl.message(
+      'By creating an account, you agree to our ',
+      name: 'toc_head',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` and `
+  String get toc_and {
+    return Intl.message(
+      ' and ',
+      name: 'toc_and',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Conditions of Use`
+  String get toc_conditions_of_use {
+    return Intl.message(
+      'Conditions of Use',
+      name: 'toc_conditions_of_use',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Notice`
+  String get toc_privacy_notice {
+    return Intl.message(
+      'Privacy Notice',
+      name: 'toc_privacy_notice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have an account yet? `
+  String get do_not_have_account {
+    return Intl.message(
+      'Don’t have an account yet? ',
+      name: 'do_not_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot your password? That's okay, it happens to everyone!\nPlease provide your email to reset your password.`
+  String get forgot_password_consolation {
+    return Intl.message(
+      'Forgot your password? That\'s okay, it happens to everyone!\nPlease provide your email to reset your password.',
+      name: 'forgot_password_consolation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Instruction`
+  String get send_instruction {
+    return Intl.message(
+      'Send Instruction',
+      name: 'send_instruction',
       desc: '',
       args: [],
     );

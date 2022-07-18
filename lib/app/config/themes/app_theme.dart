@@ -12,9 +12,9 @@ class AppTheme {
             brightness: Brightness.dark,
             elevatedButtonTheme: ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
-              onPrimary: Colours.tf_text,
+              onPrimary: Colours.tfText,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(Dimens.m_radius),
+                borderRadius: BorderRadius.circular(Dimens.mRadius),
               ),
               primary: Colors.black,
               textStyle: TextStyle(
