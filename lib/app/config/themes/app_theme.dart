@@ -17,7 +17,7 @@ class AppTheme {
                 borderRadius: BorderRadius.circular(Dimens.mRadius),
               ),
               primary: Colors.black,
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                   fontSize: Dimens.lts, fontWeight: FontWeight.normal),
             ))).textTheme, //dark or white depends on usuage
       ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fe_ezlang_flashcard/app/models/error.dart';
+import 'package:fe_ezlang_flashcard/app/repository/remotes/exceptions/notfound_exception%20copy.dart';
 import 'package:fe_ezlang_flashcard/app/utils/shared_pref_utils.dart';
 
 import 'exceptions/bad_request_exception.dart';
@@ -104,9 +105,10 @@ abstract class BaseApiService {
         throw BadRequestException(ErrorRes.fromJson(responseJson).description);
       case 401:
       case 403:
-      case 404:
         throw UnauthorisedException(
             ErrorRes.fromJson(responseJson).description);
+      case 404:
+        throw NotFoundException(ErrorRes.fromJson(responseJson).description);
       case 500:
       default:
         throw InternalServerException(

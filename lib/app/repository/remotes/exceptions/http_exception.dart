@@ -1,6 +1,6 @@
 class HttpException implements Exception {
-  final _message;
-  final _prefix;
+  final String? _message;
+  final String? _prefix;
 
   HttpException([this._message, this._prefix]);
 

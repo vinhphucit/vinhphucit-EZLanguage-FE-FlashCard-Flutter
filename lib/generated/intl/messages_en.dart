@@ -22,7 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "activate": MessageLookupByLibrary.simpleMessage("Activate"),
+        "activate_account":
+            MessageLookupByLibrary.simpleMessage("Activate Account"),
+        "already_have_activation_code": MessageLookupByLibrary.simpleMessage(
+            "Already have activation code?"),
+        "already_have_code":
+            MessageLookupByLibrary.simpleMessage("Already have code?"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
+        "code": MessageLookupByLibrary.simpleMessage("Code"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -44,15 +52,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid last name"),
         "invalid_password":
             MessageLookupByLibrary.simpleMessage("Password is too short!"),
+        "invalid_password_reenter": MessageLookupByLibrary.simpleMessage(
+            "Passwords did not match. Try again."),
         "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
+        "new_password": MessageLookupByLibrary.simpleMessage("New pasword"),
+        "new_password_changed": MessageLookupByLibrary.simpleMessage(
+            "Congratulation! \nYour new password has been changed successfully. "),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "reenter_password":
+            MessageLookupByLibrary.simpleMessage("Re-enter password"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "request_reset_password_successfully_alert":
+            MessageLookupByLibrary.simpleMessage(
+                "You\'ve requested reset your password successfully. A code will be sent to your email for a short while, please check your email and enter the sent code into the next screen alongside with your new password."),
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Reset password"),
         "send_instruction":
             MessageLookupByLibrary.simpleMessage("Send Instruction"),
         "signin": MessageLookupByLibrary.simpleMessage("Signin"),
+        "signup": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "signup_successfully_alert": MessageLookupByLibrary.simpleMessage(
+            "Congratulation! \nYou\'ve created your own account successfully. We will send you an activation code in a moment, please check your email and re-enter that code in the next screen to activate your account. \nThanks and happy learning."),
         "toc_and": MessageLookupByLibrary.simpleMessage(" and "),
         "toc_conditions_of_use":
             MessageLookupByLibrary.simpleMessage("Conditions of Use"),
@@ -60,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "By creating an account, you agree to our "),
         "toc_privacy_notice":
             MessageLookupByLibrary.simpleMessage("Privacy Notice"),
+        "tof_accept_required": MessageLookupByLibrary.simpleMessage(
+            "Please check the checkbox to agree with our terms and conditions."),
         "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome Back")
       };
 }

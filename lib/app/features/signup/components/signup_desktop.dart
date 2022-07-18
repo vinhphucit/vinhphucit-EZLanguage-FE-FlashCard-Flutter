@@ -1,32 +1,46 @@
 import 'package:fe_ezlang_flashcard/app/config/resources/colours.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/styles.dart';
+import 'package:fe_ezlang_flashcard/app/features/activate_account/activate_account_screen.dart';
+import 'package:fe_ezlang_flashcard/app/providers/signup_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_button.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_text_field.dart';
+import 'package:fe_ezlang_flashcard/app/utils/snackbar_utils.dart';
 import 'package:fe_ezlang_flashcard/generated/l10n.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fe_ezlang_flashcard/app/utils/extensions/get_string_ex.dart';
+import 'package:provider/provider.dart';
 
 class SignUpDesktop extends StatefulWidget {
-  bool? checkedValue;
-  String? email, password, firstName, lastName;
-  SignUpDesktop(
-      {Key? key,
-      bool? this.checkedValue,
-      String? this.email,
-      String? this.password,
-      String? this.firstName,
-      String? this.lastName})
-      : super(key: key);
+  Function(String email, String password, String firstName, String lastName)
+      submitForm;
+  SignUpDesktop({Key? key, required this.submitForm}) : super(key: key);
 
   @override
   State<SignUpDesktop> createState() => _SignUpDesktopState();
 }
 
 class _SignUpDesktopState extends State<SignUpDesktop> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  bool? checkedValue;
+  String? email, password, firstName, lastName;
+  final TextEditingController _passwordController = TextEditingController();
+  Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    if (!(checkedValue ?? false)) {
+      SnackbarUtils.buildSnackbar(context, S.of(context).tof_accept_required);
+      return;
+    }
+    _formKey.currentState!.save();
+
+    await widget.submitForm(email!, password!, firstName!, lastName!);
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: SafeArea(
         child: Stack(
@@ -71,128 +85,176 @@ class _SignUpDesktopState extends State<SignUpDesktop> {
                 Padding(
                   padding: const EdgeInsets.all(Dimens.lp),
                   child: Form(
+                    key: _formKey,
                     child: Column(children: [
-                      FormTextField(
-                        defaultFocus: true,
-                        hintText: S.of(context).email,
-                        icon: Icons.email,
-                        onSaved: (value) => widget.email = value,
-                        validator: (value) {
-                          if (value?.isEmpty ??
-                              false || !(value ?? '').contains('@')) {
-                            return S.of(context).invalid_email;
-                          }
-                          return null;
-                        },
+                      Consumer<SignUpController>(
+                        builder: (context, value, child) => FormTextField(
+                          defaultFocus: true,
+                          hintText: S.of(context).email,
+                          icon: Icons.email,
+                          disabled: value.isLoading,
+                          onSaved: (value) => email = value,
+                          validator: (value) {
+                            if (!(value as String).isValidEmail) {
+                              return S.of(context).invalid_email;
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: Dimens.mm,
                       ),
-                      FormTextField(
-                        hintText: S.of(context).password,
-                        icon: Icons.lock,
-                        isObscured: true,
-                        onSaved: (value) => widget.password = value,
-                        validator: (value) {
-                          if (value?.isEmpty ??
-                              false || (value?.length ?? 0) < 5) {
-                            return S.of(context).invalid_password;
-                          }
-                        },
+                      Consumer<SignUpController>(
+                        builder: (context, value, child) => FormTextField(
+                          hintText: S.of(context).password,
+                          controller: _passwordController,
+                          icon: Icons.lock,
+                          isObscured: true,
+                          disabled: value.isLoading,
+                          onSaved: (value) => password = value,
+                          validator: (value) {
+                            if (value?.isEmpty ??
+                                false || (value?.length ?? 0) < 5) {
+                              return S.of(context).invalid_password;
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: Dimens.mm,
                       ),
-                      FormTextField(
-                        hintText: S.of(context).confirm_password,
-                        icon: Icons.lock,
-                        isObscured: true,
-                        onSaved: (value) => widget.password = value,
-                        validator: (value) {
-                          if (value?.isEmpty ??
-                              false || (value?.length ?? 0) < 5) {
-                            return S.of(context).invalid_password;
-                          }
-                        },
+                      Consumer<SignUpController>(
+                        builder: (context, value, child) => FormTextField(
+                          hintText: S.of(context).confirm_password,
+                          icon: Icons.sync,
+                          isObscured: true,
+                          disabled: value.isLoading,
+                          onSaved: (value) => password = value,
+                          validator: (value) {
+                            if ((value?.isEmpty ?? false) ||
+                                (value != _passwordController.text)) {
+                              return S.of(context).invalid_password_reenter;
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: Dimens.mm,
                       ),
-                      FormTextField(
-                        hintText: S.of(context).first_name,
-                        icon: Icons.person,
-                        onSaved: (value) => widget.firstName = value,
-                        validator: (value) {
-                          if (value?.isEmpty ?? false) {
-                            return S.of(context).invalid_first_name;
-                          }
-                          return null;
-                        },
+                      Consumer<SignUpController>(
+                        builder: (context, value, child) => FormTextField(
+                          hintText: S.of(context).first_name,
+                          icon: Icons.person,
+                          disabled: value.isLoading,
+                          onSaved: (value) => firstName = value,
+                          validator: (value) {
+                            if (value?.isEmpty ?? false) {
+                              return S.of(context).invalid_first_name;
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: Dimens.mm,
                       ),
-                      FormTextField(
-                        hintText: S.of(context).last_name,
-                        icon: Icons.person,
-                        onSaved: (value) => widget.lastName = value,
-                        validator: (value) {
-                          if (value?.isEmpty ?? false) {
-                            return S.of(context).invalid_last_name;
-                          }
-                          return null;
-                        },
+                      Consumer<SignUpController>(
+                        builder: (context, value, child) => FormTextField(
+                          hintText: S.of(context).last_name,
+                          icon: Icons.person,
+                          disabled: value.isLoading,
+                          onSaved: (value) => lastName = value,
+                          validator: (value) {
+                            if (value?.isEmpty ?? false) {
+                              return S.of(context).invalid_last_name;
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: Dimens.mm,
                       ),
                       Align(
                         alignment: Alignment.center,
-                        child: CheckboxListTile(
-                          title: RichText(
-                            textAlign: TextAlign.left,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                    text: S.of(context).toc_head,
-                                    style: Styles.commonText),
-                                TextSpan(
-                                  text: S.of(context).toc_conditions_of_use,
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {},
-                                  style: Styles.commonText.copyWith(
-                                      decoration: TextDecoration.underline),
-                                ),
-                                TextSpan(
-                                  text: S.of(context).toc_and,
-                                  style: Styles.commonText,
-                                ),
-                                TextSpan(
-                                  text: S.of(context).toc_privacy_notice,
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {},
-                                  style: Styles.commonText.copyWith(
-                                      decoration: TextDecoration.underline),
-                                ),
-                              ],
+                        child: Consumer<SignUpController>(
+                          builder: (context, value, child) => CheckboxListTile(
+                            title: RichText(
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                      text: S.of(context).toc_head,
+                                      style: Styles.commonText),
+                                  TextSpan(
+                                    text: S.of(context).toc_conditions_of_use,
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {},
+                                    style: Styles.commonText.copyWith(
+                                        decoration: TextDecoration.underline),
+                                  ),
+                                  TextSpan(
+                                    text: S.of(context).toc_and,
+                                    style: Styles.commonText,
+                                  ),
+                                  TextSpan(
+                                    text: S.of(context).toc_privacy_notice,
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {},
+                                    style: Styles.commonText.copyWith(
+                                        decoration: TextDecoration.underline),
+                                  ),
+                                ],
+                              ),
                             ),
+                            activeColor: Colours.tfIcon,
+                            value: checkedValue ?? false,
+                            onChanged: value.isLoading
+                                ? null
+                                : (newValue) {
+                                    setState(() {
+                                      checkedValue = newValue ?? false;
+                                    });
+                                  },
+                            controlAffinity: ListTileControlAffinity.leading,
                           ),
-                          activeColor: Colours.tfIcon,
-                          value: widget.checkedValue ?? false,
-                          onChanged: (newValue) {
-                            setState(() {
-                              widget.checkedValue = newValue ?? false;
-                            });
-                          },
-                          controlAffinity: ListTileControlAffinity.leading,
                         ),
                       ),
                       const SizedBox(
                         height: Dimens.mm,
                       ),
-                      FormButton(text: S.of(context).register, callback: () {}),
+                      Consumer<SignUpController>(
+                        builder: (context, value, child) => FormButton(
+                            text: S.of(context).register,
+                            isLoading: value.isLoading,
+                            callback: _submit),
+                      ),
                     ]),
                   ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(S.of(context).already_have_activation_code),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(ActivateAccountScreen.routeName);
+                        },
+                        child: Text(
+                          S.of(context).activate,
+                          style: const TextStyle(
+                            color: Colours.specialLink,
+                            fontSize: Dimens.lts,
+                          ),
+                        ))
+                  ],
                 )
               ],
             ),

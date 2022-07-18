@@ -34,7 +34,6 @@ class AppController with ChangeNotifier {
     try {
       await Repository.getInstance()
           .signOut(_currentSession?.refreshToken ?? '');
-    } catch (e) {
     } finally {
       _handleNewSession(null);
     }

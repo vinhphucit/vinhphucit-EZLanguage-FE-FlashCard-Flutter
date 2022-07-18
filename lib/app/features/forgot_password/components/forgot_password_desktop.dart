@@ -1,4 +1,6 @@
+import 'package:fe_ezlang_flashcard/app/config/resources/colours.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
+import 'package:fe_ezlang_flashcard/app/features/reset_password/reset_password_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_button.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_text_field.dart';
@@ -104,7 +106,28 @@ class ForgotPasswordDesktop extends StatelessWidget {
                         ]),
                       ),
                     ],
-                  ))
+                  )),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(S.of(context).already_have_code),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(ResetPasswordScreen.routeName);
+                      },
+                      child: Text(
+                        S.of(context).activate,
+                        style: const TextStyle(
+                          color: Colours.specialLink,
+                          fontSize: Dimens.lts,
+                        ),
+                      ))
+                ],
+              )
             ],
           ),
         ]),

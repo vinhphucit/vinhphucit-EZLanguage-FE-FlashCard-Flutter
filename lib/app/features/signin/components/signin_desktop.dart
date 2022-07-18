@@ -36,7 +36,6 @@ class _SignInDesktopState extends State<SignInDesktop> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: SafeArea(
         child: Column(
@@ -92,6 +91,7 @@ class _SignInDesktopState extends State<SignInDesktop> {
                             (value?.length ?? 0) < 5) {
                           return S.of(context).invalid_password;
                         }
+                        return null;
                       },
                     ),
                   ),

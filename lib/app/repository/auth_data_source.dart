@@ -8,4 +8,7 @@ abstract class AuthDataSource {
   Future<void> requestResetPassword(String email);
   Future<UserModel> signUp(
       String email, String password, String firstName, String lastName);
+  Future<void> confirmResetPasswordCode(
+      String email, String code, String newPassword);
+  Future<void> activateAccountByCode(String email, String code);
 }

@@ -23,8 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
         await Future.delayed(const Duration(seconds: 1));
         if (value) {
           Navigator.pushReplacementNamed(context, DashboardScreen.routeName);
-        } else
+        } else {
           Navigator.pushReplacementNamed(context, SignInScreen.routeName);
+        }
       },
     );
   }

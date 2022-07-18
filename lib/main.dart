@@ -1,13 +1,18 @@
 //refer to fd-project-management-master
 import 'package:fe_ezlang_flashcard/app/config/themes/app_theme.dart';
+import 'package:fe_ezlang_flashcard/app/features/activate_account/activate_account_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/dashboard/dashboard_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/forgot_password/forgot_password_screen.dart';
+import 'package:fe_ezlang_flashcard/app/features/reset_password/reset_password_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/signin/signin_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/signup/signup_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/splash/splash_screen.dart';
+import 'package:fe_ezlang_flashcard/app/providers/activate_account_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/app_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
+import 'package:fe_ezlang_flashcard/app/providers/reset_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
+import 'package:fe_ezlang_flashcard/app/providers/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -33,10 +38,19 @@ class FlashCardApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ForgotPasswordController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ResetPasswordController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SignUpController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ActivateAccountController(),
         )
       ],
       child: MaterialApp(
-        localizationsDelegates: [
+        localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -51,6 +65,10 @@ class FlashCardApp extends StatelessWidget {
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           ForgotPasswordScreen.routeName: (context) =>
               const ForgotPasswordScreen(),
+          ResetPasswordScreen.routeName: (context) =>
+              const ResetPasswordScreen(),
+          ActivateAccountScreen.routeName: (context) =>
+              const ActivateAccountScreen(),
           DashboardScreen.routeName: (context) => const DashboardScreen(),
         },
       ),

@@ -1,5 +1,6 @@
-import 'package:fe_ezlang_flashcard/app/config/resources/styles.dart';
 import 'package:fe_ezlang_flashcard/app/repository/remotes/exceptions/http_exception.dart';
+import 'package:fe_ezlang_flashcard/app/utils/dialog_utils.dart';
+import 'package:fe_ezlang_flashcard/app/utils/snackbar_utils.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseScreen {
@@ -9,28 +10,19 @@ abstract class BaseScreen {
       if (next != null) next();
       return t;
     } on HttpException catch (e) {
-      buildSnackError(e.toString(), context);
+      showSnackBar(e.toString(), context);
     } catch (e) {
-      buildSnackError(e.toString(), context);
+      showSnackBar(e.toString(), context);
     }
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> buildSnackError(
-      String error, context) {
-    return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 2),
-        backgroundColor: Colors.black,
-        content: SizedBox(
-          height: 30,
-          child: Center(
-            child: Text(
-              error,
-              style: Styles.commonText,
-            ),
-          ),
-        ),
-      ),
-    );
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
+      String error, BuildContext context) {
+    return SnackbarUtils.buildSnackbar(context, error);
+  }
+
+  void showAlertDialog(BuildContext context, String title, String content,
+      VoidCallback function) {
+    DialogUtils.showAlertDialog(context, content, title, content, function);
   }
 }

@@ -1,11 +1,10 @@
 import 'package:fe_ezlang_flashcard/app/features/base_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/forgot_password/components/forgot_password_desktop.dart';
+import 'package:fe_ezlang_flashcard/app/features/reset_password/reset_password_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/responsible_builder.dart';
 import 'package:fe_ezlang_flashcard/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -22,7 +21,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     await handleResponse<void>(
         context,
         Provider.of<ForgotPasswordController>(context, listen: false)
-            .requestResetPassword(email));
+            .requestResetPassword(email), () {
+      showAlertDialog(context, S.of(context).reset_password,
+          S.of(context).request_reset_password_successfully_alert, () {
+        Navigator.pushReplacementNamed(context, ResetPasswordScreen.routeName);
+      });
+    });
   }
 
   @override

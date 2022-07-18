@@ -93,9 +93,10 @@ extension GetStringUtils on String {
         r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
         r"{0,253}[a-zA-Z0-9])?)*$";
     RegExp regex = RegExp(pattern);
-    if (this == null || this.isEmpty || !regex.hasMatch(this))
+    if (isEmpty || !regex.hasMatch(this)) {
       return false;
-    else
+    } else {
       return true;
+    }
   }
 }

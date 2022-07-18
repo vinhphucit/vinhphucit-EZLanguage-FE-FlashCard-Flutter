@@ -130,6 +130,36 @@ class S {
     );
   }
 
+  /// `Activate`
+  String get activate {
+    return Intl.message(
+      'Activate',
+      name: 'activate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code`
+  String get code {
+    return Intl.message(
+      'Code',
+      name: 'code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm Password`
   String get confirm_password {
     return Intl.message(
@@ -160,6 +190,26 @@ class S {
     );
   }
 
+  /// `Re-enter password`
+  String get reenter_password {
+    return Intl.message(
+      'Re-enter password',
+      name: 'reenter_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New pasword`
+  String get new_password {
+    return Intl.message(
+      'New pasword',
+      name: 'new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Invalid email!`
   String get invalid_email {
     return Intl.message(
@@ -175,6 +225,16 @@ class S {
     return Intl.message(
       'Password is too short!',
       name: 'invalid_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords did not match. Try again.`
+  String get invalid_password_reenter {
+    return Intl.message(
+      'Passwords did not match. Try again.',
+      name: 'invalid_password_reenter',
       desc: '',
       args: [],
     );
@@ -225,6 +285,26 @@ class S {
     return Intl.message(
       'Last Name',
       name: 'last_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signup {
+    return Intl.message(
+      'Sign Up',
+      name: 'signup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulation! \nYou've created your own account successfully. We will send you an activation code in a moment, please check your email and re-enter that code in the next screen to activate your account. \nThanks and happy learning.`
+  String get signup_successfully_alert {
+    return Intl.message(
+      'Congratulation! \nYou\'ve created your own account successfully. We will send you an activation code in a moment, please check your email and re-enter that code in the next screen to activate your account. \nThanks and happy learning.',
+      name: 'signup_successfully_alert',
       desc: '',
       args: [],
     );
@@ -305,6 +385,66 @@ class S {
     return Intl.message(
       'Send Instruction',
       name: 'send_instruction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have code?`
+  String get already_have_code {
+    return Intl.message(
+      'Already have code?',
+      name: 'already_have_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have activation code?`
+  String get already_have_activation_code {
+    return Intl.message(
+      'Already have activation code?',
+      name: 'already_have_activation_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You've requested reset your password successfully. A code will be sent to your email for a short while, please check your email and enter the sent code into the next screen alongside with your new password.`
+  String get request_reset_password_successfully_alert {
+    return Intl.message(
+      'You\'ve requested reset your password successfully. A code will be sent to your email for a short while, please check your email and enter the sent code into the next screen alongside with your new password.',
+      name: 'request_reset_password_successfully_alert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulation! \nYour new password has been changed successfully. `
+  String get new_password_changed {
+    return Intl.message(
+      'Congratulation! \nYour new password has been changed successfully. ',
+      name: 'new_password_changed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate Account`
+  String get activate_account {
+    return Intl.message(
+      'Activate Account',
+      name: 'activate_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check the checkbox to agree with our terms and conditions.`
+  String get tof_accept_required {
+    return Intl.message(
+      'Please check the checkbox to agree with our terms and conditions.',
+      name: 'tof_accept_required',
       desc: '',
       args: [],
     );

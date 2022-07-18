@@ -15,16 +15,16 @@ class FormTextField extends StatefulWidget {
   bool? disabled;
   FormTextField({
     Key? key,
-    required String this.hintText,
-    FormFieldValidator? this.validator,
-    TextEditingController? this.controller,
-    ValueChanged<String>? this.onChanged,
-    FormFieldSetter<String>? this.onSaved,
-    bool? this.defaultFocus,
-    IconData? this.icon,
-    bool? this.isObscured,
-    bool? this.pwVisible,
-    bool? this.disabled,
+    required this.hintText,
+    this.validator,
+    this.controller,
+    this.onChanged,
+    this.onSaved,
+    this.defaultFocus,
+    this.icon,
+    this.isObscured,
+    this.pwVisible,
+    this.disabled,
   }) : super(key: key);
 
   @override
