@@ -1,4 +1,6 @@
 //refer to fd-project-management-master
+import 'dart:io';
+
 import 'package:fe_ezlang_flashcard/app/config/themes/app_theme.dart';
 import 'package:fe_ezlang_flashcard/app/features/activate_account/activate_account_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/dashboard/dashboard_screen.dart';
@@ -17,8 +19,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
+import 'package:window_size/window_size.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    setWindowTitle('FlashCard');
+    setWindowMinSize(const Size(400, 300));
+  }
+
   runApp(const FlashCardApp());
 }
 
