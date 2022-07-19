@@ -20,15 +20,17 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'package:window_size/window_size.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowTitle('FlashCard');
-    setWindowMinSize(const Size(400, 300));
+  if (kIsWeb) {
+  } else {
+    WidgetsFlutterBinding.ensureInitialized();
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      setWindowTitle('FlashCard');
+      setWindowMinSize(const Size(400, 300));
+    }
   }
-
   runApp(const FlashCardApp());
 }
 
