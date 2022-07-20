@@ -1,4 +1,0 @@
-#Wed Jul 20 20:54:56 ICT 2022
-base.0=/Users/tranvinhphuc/Developments/source code/EZLang/EZLanguage-FE-FlashCard(Flutter)/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
