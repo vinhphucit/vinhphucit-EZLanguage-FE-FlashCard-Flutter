@@ -21,4 +21,8 @@ class Styles {
 
   static const titleTextForm =
       TextStyle(fontWeight: FontWeight.bold, fontSize: Dimens.xlts);
+  static var titleText =
+      TextStyle(fontWeight: FontWeight.bold, fontSize: Dimens.mts);
+  static var subtitleText =
+      TextStyle(fontWeight: FontWeight.normal, fontSize: Dimens.sts);
 }

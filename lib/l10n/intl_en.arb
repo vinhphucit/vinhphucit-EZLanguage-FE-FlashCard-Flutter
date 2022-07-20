@@ -1,5 +1,4 @@
 {
-    
     "hey_there":"Hey There,",
     "welcome_back":"Welcome Back",
     "signin":"Signin",
@@ -11,6 +10,8 @@
     "activate":"Activate",
     "code":"Code",
     "ok":"OK",
+    "dashboard":"Dashboard",
+    "search":"Search",
     "confirm_password":"Confirm Password",
     "forgot_password":"Forgot your password?",
     "reset_password":"Reset password",    
@@ -27,8 +28,8 @@
     "signup":"Sign Up",
     "signup_successfully_alert":"Congratulation! \nYou've created your own account successfully. We will send you an activation code in a moment, please check your email and re-enter that code in the next screen to activate your account. \nThanks and happy learning.",
     "back":"Back",
-    "toc_head":"By creating an account, you agree to our ",
     "toc_and":" and ",
+    "toc_head":"By creating an account, you agree to our ",
     "toc_conditions_of_use":"Conditions of Use",
     "toc_privacy_notice":"Privacy Notice",
     "do_not_have_account":"Don’t have an account yet? ",

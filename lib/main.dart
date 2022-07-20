@@ -1,4 +1,6 @@
 //refer to fd-project-management-master
+import 'dart:io';
+
 import 'package:fe_ezlang_flashcard/app/config/themes/app_theme.dart';
 import 'package:fe_ezlang_flashcard/app/features/activate_account/activate_account_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/dashboard/dashboard_screen.dart';
@@ -14,18 +16,26 @@ import 'package:fe_ezlang_flashcard/app/providers/reset_password_controller.dart
 import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/signup_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
+import 'package:window_size/window_size.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() {
-  runApp(const FlashCardApp());
+  if (kIsWeb) {
+  } else {
+    WidgetsFlutterBinding.ensureInitialized();
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      setWindowTitle('FlashCard');
+      setWindowMinSize(const Size(400, 300));
+    }
+  }
+  runApp(FlashCardApp());
 }
 
 class FlashCardApp extends StatelessWidget {
-  const FlashCardApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

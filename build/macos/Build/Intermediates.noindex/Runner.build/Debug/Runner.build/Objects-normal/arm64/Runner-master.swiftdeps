@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)"
+options: "a2c1b43a5043cc21a1c5bafb8322a95d2234b53d346373612eef411ef89b6f2e"
+build_start_time: [1658311180, 74167013]
+build_end_time: [1658311180, 522246837]
+inputs:
+  "/Users/phuc.tran/Workplace/IDEA/EZLanguage/EZLanguage-FE-FlashCard-Flutter/macos/Flutter/GeneratedPluginRegistrant.swift": [1658311154, 733616352]
+  "/Users/phuc.tran/Workplace/IDEA/EZLanguage/EZLanguage-FE-FlashCard-Flutter/macos/Runner/AppDelegate.swift": [1658099151, 721581459]
+  "/Users/phuc.tran/Workplace/IDEA/EZLanguage/EZLanguage-FE-FlashCard-Flutter/macos/Runner/MainFlutterWindow.swift": [1658099151, 723256111]

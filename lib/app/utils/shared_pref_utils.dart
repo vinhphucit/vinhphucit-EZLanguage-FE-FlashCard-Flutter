@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefUtils {
   static const String _prefSession = 'session';
   static const String _prefAccessToken = 'access_token';
+  static const String _currentLocale = 'locale';
 
   static void saveSession(Session? session) async {
     final prefs = await SharedPreferences.getInstance();
@@ -36,6 +37,21 @@ class SharedPrefUtils {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey(_prefAccessToken)) {
       String? prefToken = prefs.getString(_prefAccessToken);
+      return prefToken;
+    }
+    return null;
+  }
+
+  static Future<void> setLocale(String locale) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    prefs.setString(_currentLocale, locale);
+  }
+
+  static Future<String?> getLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey(_currentLocale)) {
+      String? prefToken = prefs.getString(_currentLocale);
       return prefToken;
     }
     return null;
