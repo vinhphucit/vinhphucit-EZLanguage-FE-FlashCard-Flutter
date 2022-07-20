@@ -36,6 +36,7 @@ class ForgotPasswordDesktop extends StatelessWidget {
             child: Row(
               children: [
                 InkWell(
+                  key: Key('forgot_password_back'),
                   onTap: () => Navigator.of(context).pop(),
                   child: Row(children: [
                     const Icon(Icons.arrow_back),

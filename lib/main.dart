@@ -66,8 +66,7 @@ class FlashCardApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales:
-            S.delegate.supportedLocales, // Hebrew, no country code],
+        supportedLocales: S.delegate.supportedLocales,
         home: const SplashScreen(),
         theme: AppTheme.basic,
         routes: {

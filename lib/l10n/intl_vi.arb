@@ -10,6 +10,8 @@
     "activate": "Kích hoạt",
     "code": "Mã",
     "ok": "Đồng ý",
+    "dashboard":"Bảng điều khiển",
+    "search":"Tìm kiếm",
     "confirm_password": "Xác nhận mật khẩu",
     "forgot_password": "Quên mật khẩu?",
     "reset_password": "Đặt lại mật khẩu",

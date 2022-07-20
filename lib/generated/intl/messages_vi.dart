@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu"),
         "create_an_account":
             MessageLookupByLibrary.simpleMessage("Tạo một tài khoản"),
+        "dashboard": MessageLookupByLibrary.simpleMessage("Bảng điều khiển"),
         "do_not_have_account":
             MessageLookupByLibrary.simpleMessage("Bạn chưa có tài khoản? "),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -65,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("Đặt lại"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu"),
+        "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm"),
         "send_instruction":
             MessageLookupByLibrary.simpleMessage("Gửi hướng dẫn"),
         "signin": MessageLookupByLibrary.simpleMessage("Đăng nhập"),

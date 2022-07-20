@@ -65,3 +65,7 @@ flutter drive \
   --target=integration_test/app_test.dart \
   -d web-server
 `
+
+```
+flutter drive --driver=./tests/test_driver/integration_test.dart --target=tests/integration_tests/app_test.dart -d chrome
+```

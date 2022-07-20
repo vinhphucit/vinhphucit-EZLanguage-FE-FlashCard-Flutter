@@ -10,6 +10,8 @@
     "activate":"Activate",
     "code":"Code",
     "ok":"OK",
+    "dashboard":"Dashboard",
+    "search":"Search",
     "confirm_password":"Confirm Password",
     "forgot_password":"Forgot your password?",
     "reset_password":"Reset password",    

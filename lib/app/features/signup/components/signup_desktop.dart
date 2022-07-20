@@ -51,6 +51,7 @@ class _SignUpDesktopState extends State<SignUpDesktop> {
               child: Row(
                 children: [
                   InkWell(
+                    key: Key('signup_back'),
                     onTap: () => Navigator.of(context).pop(),
                     child: Row(children: [
                       const Icon(Icons.arrow_back),

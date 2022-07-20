@@ -64,23 +64,28 @@ class _SignInDesktopState extends State<SignInDesktop> {
               child: Form(
                 key: _formKey,
                 child: Column(children: [
-                  FormTextField(
-                    defaultFocus: true,
-                    hintText: S.of(context).email,
-                    icon: Icons.email,
-                    onSaved: (value) => email = value,
-                    validator: (value) {
-                      if (!(value as String).isValidEmail) {
-                        return S.of(context).invalid_email;
-                      }
-                      return null;
-                    },
+                  Consumer<SignInController>(
+                    builder: (context, value, child) => FormTextField(
+                      key: const Key('k_signin_email'),
+                      defaultFocus: true,
+                      hintText: S.of(context).email,
+                      icon: Icons.email,
+                      disabled: value.isLoading,
+                      onSaved: (value) => email = value,
+                      validator: (value) {
+                        if (!(value as String).isValidEmail) {
+                          return S.of(context).invalid_email;
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: Dimens.mm,
                   ),
                   Consumer<SignInController>(
                     builder: (context, value, child) => FormTextField(
+                      key: const Key('k_signin_password'),
                       hintText: S.of(context).password,
                       icon: Icons.lock,
                       isObscured: true,
@@ -102,6 +107,7 @@ class _SignInDesktopState extends State<SignInDesktop> {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: TextButton(
+                        key: const Key('k_signin_forgotpassword_btn'),
                         onPressed: () {
                           Navigator.of(context)
                               .pushNamed(ForgotPasswordScreen.routeName);
@@ -117,6 +123,7 @@ class _SignInDesktopState extends State<SignInDesktop> {
                   ),
                   Consumer<SignInController>(
                     builder: (context, value, child) => FormButton(
+                      key: const Key('k_signin_submit_btn'),
                       isLoading: value.isLoading,
                       text: S.of(context).signin,
                       callback: _submit,
@@ -130,6 +137,7 @@ class _SignInDesktopState extends State<SignInDesktop> {
                     children: [
                       Text(S.of(context).do_not_have_account),
                       TextButton(
+                          key: const Key('k_signin_signup_btn'),
                           onPressed: () {
                             Navigator.of(context)
                                 .pushNamed(SignUpScreen.routeName);
