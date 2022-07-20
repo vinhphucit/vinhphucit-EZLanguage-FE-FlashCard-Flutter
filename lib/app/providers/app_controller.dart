@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:fe_ezlang_flashcard/app/models/session.dart';
 import 'package:fe_ezlang_flashcard/app/repository/respository.dart';
 import 'package:fe_ezlang_flashcard/app/utils/shared_pref_utils.dart';
+import 'package:fe_ezlang_flashcard/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,10 @@ class AppController with ChangeNotifier {
   Session? _currentSession;
   DateTime? _expiryDate;
   Timer? _refreshTokenTimer;
+  Locale _locale = Locale('vi');
+  bool get locale {
+    return locale;
+  }
 
   bool get isAuth {
     return _currentSession != null;
@@ -88,5 +93,11 @@ class AppController with ChangeNotifier {
     } catch (e) {
       rethrow;
     } finally {}
+  }
+
+  Future<void> setLocale(String s) async {
+    _locale = Locale(s);
+    await S.load(_locale);
+    notifyListeners();
   }
 }

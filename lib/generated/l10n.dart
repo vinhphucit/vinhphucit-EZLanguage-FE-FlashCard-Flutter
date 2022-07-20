@@ -320,21 +320,21 @@ class S {
     );
   }
 
-  /// `By creating an account, you agree to our `
-  String get toc_head {
-    return Intl.message(
-      'By creating an account, you agree to our ',
-      name: 'toc_head',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// ` and `
   String get toc_and {
     return Intl.message(
       ' and ',
       name: 'toc_and',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By creating an account, you agree to our `
+  String get toc_head {
+    return Intl.message(
+      'By creating an account, you agree to our ',
+      name: 'toc_head',
       desc: '',
       args: [],
     );
@@ -458,7 +458,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'es'),
-      Locale.fromSubtags(languageCode: 'vn'),
+      Locale.fromSubtags(languageCode: 'vi'),
     ];
   }
 

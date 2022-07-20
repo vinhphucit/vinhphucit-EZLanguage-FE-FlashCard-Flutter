@@ -3,6 +3,7 @@ import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/styles.dart';
 import 'package:fe_ezlang_flashcard/app/features/forgot_password/forgot_password_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/signup/signup_screen.dart';
+import 'package:fe_ezlang_flashcard/app/providers/app_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_button.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_text_field.dart';

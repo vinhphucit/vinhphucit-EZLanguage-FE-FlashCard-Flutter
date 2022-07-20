@@ -16,6 +16,7 @@ import 'package:fe_ezlang_flashcard/app/providers/reset_password_controller.dart
 import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/signup_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -31,13 +32,10 @@ void main() {
       setWindowMinSize(const Size(400, 300));
     }
   }
-  runApp(const FlashCardApp());
+  runApp(FlashCardApp());
 }
 
 class FlashCardApp extends StatelessWidget {
-  const FlashCardApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -68,7 +66,8 @@ class FlashCardApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: S.delegate.supportedLocales,
+        supportedLocales:
+            S.delegate.supportedLocales, // Hebrew, no country code],
         home: const SplashScreen(),
         theme: AppTheme.basic,
         routes: {

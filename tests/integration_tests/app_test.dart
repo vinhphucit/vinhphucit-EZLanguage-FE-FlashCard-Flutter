@@ -14,6 +14,7 @@ void main() {
     group('SignInScreen', () {
       testWidgets('Invalid Credential', (WidgetTester tester) async {
         app.main();
+
         await tester.pumpAndSettle();
         // ex
         var emailWidget = find.text('Email');
