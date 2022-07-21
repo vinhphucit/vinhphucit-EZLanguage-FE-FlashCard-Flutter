@@ -69,3 +69,6 @@ flutter drive \
 ```
 flutter drive --driver=./tests/test_driver/integration_test.dart --target=tests/integration_tests/app_test.dart -d chrome
 ```
+
+Run this command for generating class for serialization
+`flutter pub run build_runner build`

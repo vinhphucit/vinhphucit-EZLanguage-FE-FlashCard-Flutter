@@ -1,13 +1,19 @@
+import 'package:fe_ezlang_flashcard/app/models/pageable_categories.dart';
 import 'package:fe_ezlang_flashcard/app/models/session.dart';
 import 'package:fe_ezlang_flashcard/app/models/user.dart';
+import 'package:fe_ezlang_flashcard/app/repository/flashcard_data_source.dart';
+import 'package:fe_ezlang_flashcard/app/repository/remotes/flashcard_api_service.dart';
+import 'package:fe_ezlang_flashcard/main.dart';
 
 import '../auth_data_source.dart';
 import 'auth_api_service.dart';
 
-class RemoteAdminRepo implements AuthDataSource {
+class RemoteAdminRepo implements AuthDataSource, FlashCardDataSource {
   late AuthApiService _authApiService;
+  late FlashcardApiService _flashcardApiService;
   RemoteAdminRepo() {
     _authApiService = AuthApiService();
+    _flashcardApiService = FlashcardApiService();
   }
 
   @override
@@ -48,5 +54,12 @@ class RemoteAdminRepo implements AuthDataSource {
   @override
   Future<void> activateAccountByCode(String email, String code) async {
     return await _authApiService.activateAccountByCode(email, code);
+  }
+
+  @override
+  Future<PageableCategoriesModel> getCategories(
+      {int? start, int? limit, String? query}) async {
+    return await _flashcardApiService.getCategories(
+        limit: limit, start: start, query: query);
   }
 }

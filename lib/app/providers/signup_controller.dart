@@ -1,3 +1,5 @@
+import 'package:fe_ezlang_flashcard/app/models/user.dart';
+import 'package:fe_ezlang_flashcard/app/repository/respository.dart';
 import 'package:flutter/material.dart';
 
 class SignUpController with ChangeNotifier {
@@ -11,9 +13,9 @@ class SignUpController with ChangeNotifier {
     try {
       _isLoading = true;
       notifyListeners();
-      await Future.delayed(const Duration(seconds: 2));
-      // UserModel newUser = await Repository.getInstance()
-      //     .signUp(email, password, firstName, lastName);
+      // await Future.delayed(const Duration(seconds: 2));
+      UserModel newUser = await Repository.getInstance()
+          .signUp(email, password, firstName, lastName);
     } catch (e) {
       rethrow;
     } finally {

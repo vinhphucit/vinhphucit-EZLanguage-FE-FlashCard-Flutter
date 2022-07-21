@@ -1,5 +1,9 @@
-import 'permission.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+import 'permission.dart';
+part 'role.g.dart';
+
+@JsonSerializable()
 class RoleModel {
   String? id;
   String? name;
@@ -9,24 +13,7 @@ class RoleModel {
   RoleModel(
       {this.id, this.name, this.permissions, this.createdAt, this.updatedAt});
 
-  factory RoleModel.fromJson(Map<String, dynamic> json) => RoleModel(
-        id: json["id"],
-        name: json["name"],
-        createdAt: json["createdAt"],
-        updatedAt: json["updatedAt"],
-        permissions: json["permissions"] == null
-            ? null
-            : List<PermissionModel>.from(
-                json["permissions"].map((x) => PermissionModel.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "createdAt": createdAt,
-        "updatedAt": updatedAt,
-        "permissions": permissions == null
-            ? null
-            : List<dynamic>.from(permissions!.map((x) => x.toJson())),
-      };
+  factory RoleModel.fromJson(Map<String, dynamic> json) =>
+      _$RoleModelFromJson(json);
+  Map<String, dynamic> toJson() => _$RoleModelToJson(this);
 }

@@ -34,7 +34,7 @@ class _SuggestWordState extends State<SuggestWord> {
         ),
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(Dimens.lp),
+            padding: const EdgeInsets.all(Dimens.mp),
             child: Column(children: [
               Text(
                 "checkmate",
@@ -47,19 +47,29 @@ class _SuggestWordState extends State<SuggestWord> {
               SizedBox(
                 height: Dimens.xlm,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  primary: Colours.specialLink,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      constraints: BoxConstraints(),
+                      padding: EdgeInsets.all(0.0),
+                      onPressed: () {},
+                      icon: Icon(Icons.volume_up)),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      primary: Colours.specialLink,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "Study Now",
+                    ),
                   ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  "Study Now",
-                ),
-              ),
+                ],
+              )
             ]),
           ),
         ),
