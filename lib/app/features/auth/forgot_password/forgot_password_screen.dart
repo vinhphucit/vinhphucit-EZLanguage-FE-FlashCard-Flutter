@@ -1,6 +1,6 @@
 import 'package:fe_ezlang_flashcard/app/features/base_screen.dart';
-import 'package:fe_ezlang_flashcard/app/features/forgot_password/components/forgot_password_desktop.dart';
-import 'package:fe_ezlang_flashcard/app/features/reset_password/reset_password_screen.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/forgot_password/components/forgot_password_desktop.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/reset_password/reset_password_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/responsible_builder.dart';
 import 'package:fe_ezlang_flashcard/generated/l10n.dart';

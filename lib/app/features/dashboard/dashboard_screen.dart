@@ -1,6 +1,6 @@
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
 import 'package:fe_ezlang_flashcard/app/features/dashboard/components/dashboard_desktop.dart';
-import 'package:fe_ezlang_flashcard/app/features/signin/signin_screen.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/signin/signin_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/dashboard_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/responsible_builder.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/search_field.dart';

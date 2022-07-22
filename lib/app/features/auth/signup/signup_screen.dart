@@ -1,6 +1,6 @@
-import 'package:fe_ezlang_flashcard/app/features/activate_account/activate_account_screen.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/activate_account/activate_account_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/base_screen.dart';
-import 'package:fe_ezlang_flashcard/app/features/signup/components/signup_desktop.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/signup/components/signup_desktop.dart';
 import 'package:fe_ezlang_flashcard/app/providers/signup_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/responsible_builder.dart';
 import 'package:fe_ezlang_flashcard/generated/l10n.dart';

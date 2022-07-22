@@ -1,5 +1,5 @@
 import 'package:fe_ezlang_flashcard/app/features/dashboard/dashboard_screen.dart';
-import 'package:fe_ezlang_flashcard/app/features/signin/signin_screen.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/signin/signin_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/app_controller.dart';
 import 'package:fe_ezlang_flashcard/app/utils/shared_pref_utils.dart';
 import 'package:fe_ezlang_flashcard/generated/l10n.dart';

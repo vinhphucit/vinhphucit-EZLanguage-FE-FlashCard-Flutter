@@ -1,3 +1,4 @@
+import 'package:fe_ezlang_flashcard/app/models/category.dart';
 import 'package:fe_ezlang_flashcard/app/models/pageable_categories.dart';
 import 'package:fe_ezlang_flashcard/app/models/session.dart';
 import 'package:fe_ezlang_flashcard/app/models/user.dart';
@@ -60,5 +61,19 @@ class Repository implements AuthDataSource, FlashCardDataSource {
       {int? start, int? limit, String? query}) async {
     return await _remoteFlashcardRepo.getCategories(
         limit: limit, query: query, start: start);
+  }
+
+  @override
+  Future<CategoryModel> createCategory(
+      {String? title, String? description, String? imageUrl}) async {
+    return await _remoteFlashcardRepo.createCategory(
+        description: description, imageUrl: imageUrl, title: title);
+  }
+
+  @override
+  Future<CategoryModel> updateCategory(String id,
+      {String? title, String? description, String? imageUrl}) async {
+    return await _remoteFlashcardRepo.updateCategory(id,
+        description: description, imageUrl: imageUrl, title: title);
   }
 }

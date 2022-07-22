@@ -1,6 +1,6 @@
 import 'package:fe_ezlang_flashcard/app/config/resources/colours.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
-import 'package:fe_ezlang_flashcard/app/features/reset_password/reset_password_screen.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/reset_password/reset_password_screen.dart';
 import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_button.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_text_field.dart';

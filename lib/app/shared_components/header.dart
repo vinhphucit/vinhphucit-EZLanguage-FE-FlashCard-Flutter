@@ -6,7 +6,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Header extends StatelessWidget {
-  Function() onPressedMenu;
+  VoidCallback? onPressedMenu;
   Header({Key? key, required this.onPressedMenu}) : super(key: key);
 
   @override
@@ -14,7 +14,12 @@ class Header extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        IconButton(onPressed: onPressedMenu, icon: const Icon(Icons.menu)),
+        if (Navigator.canPop(context))
+          IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.arrow_back)),
+        if (!Navigator.canPop(context))
+          IconButton(onPressed: onPressedMenu, icon: const Icon(Icons.menu)),
         const SizedBox(width: Dimens.sm),
         const TimeText(),
         const SizedBox(width: Dimens.lm),

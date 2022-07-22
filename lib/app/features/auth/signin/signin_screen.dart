@@ -1,6 +1,6 @@
 import 'package:fe_ezlang_flashcard/app/features/base_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/dashboard/dashboard_screen.dart';
-import 'package:fe_ezlang_flashcard/app/features/signin/components/signin_desktop.dart';
+import 'package:fe_ezlang_flashcard/app/features/auth/signin/components/signin_desktop.dart';
 import 'package:fe_ezlang_flashcard/app/providers/signin_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/responsible_builder.dart';
 import 'package:flutter/material.dart';

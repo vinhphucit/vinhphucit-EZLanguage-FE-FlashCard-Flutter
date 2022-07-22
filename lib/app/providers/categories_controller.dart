@@ -2,7 +2,7 @@ import 'package:fe_ezlang_flashcard/app/models/category.dart';
 import 'package:fe_ezlang_flashcard/app/repository/respository.dart';
 import 'package:flutter/material.dart';
 
-class FlashCardController with ChangeNotifier {
+class CategoriesController with ChangeNotifier {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isLoading = false;
   List<CategoryModel> _categories = [];

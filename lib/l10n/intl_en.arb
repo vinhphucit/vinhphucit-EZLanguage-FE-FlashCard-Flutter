@@ -40,7 +40,8 @@
     "request_reset_password_successfully_alert":"You've requested reset your password successfully. A code will be sent to your email for a short while, please check your email and enter the sent code into the next screen alongside with your new password.",
     "new_password_changed":"Congratulation! \nYour new password has been changed successfully. ",
     "activate_account":"Activate Account",
-    "tof_accept_required":"Please check the checkbox to agree with our terms and conditions."
+    "tof_accept_required":"Please check the checkbox to agree with our terms and conditions.",
+    "add_more":"Add More"
     
     
 }

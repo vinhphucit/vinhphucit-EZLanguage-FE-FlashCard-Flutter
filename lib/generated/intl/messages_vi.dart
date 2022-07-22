@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "activate": MessageLookupByLibrary.simpleMessage("Kích hoạt"),
+        "add_more": MessageLookupByLibrary.simpleMessage("Thêm mới"),
         "already_have_activation_code":
             MessageLookupByLibrary.simpleMessage(" Đã có mã kích hoạt? "),
         "already_have_code":

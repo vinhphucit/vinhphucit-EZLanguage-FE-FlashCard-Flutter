@@ -29,8 +29,9 @@ class AppController with ChangeNotifier {
     if (_expiryDate!.isBefore(DateTime.now())) {
       bool isRefreshTokenSuccessfully = await _tryRefreshToken();
       if (!isRefreshTokenSuccessfully) return false;
+    } else {
+      _autoRefreshToken();
     }
-    notifyListeners();
 
     return true;
   }

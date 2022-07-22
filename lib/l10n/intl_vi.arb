@@ -40,5 +40,6 @@
     "request_reset_password_successful_alert": "Bạn đã yêu cầu đặt lại mật khẩu thành công. Một mã sẽ được gửi đến email của bạn trong một thời gian ngắn, vui lòng kiểm tra email của bạn và nhập mã đã gửi vào màn hình tiếp theo cùng với mật khẩu mới của bạn.",
     "new_password_changed": "Chúc mừng! \nMật khẩu mới của bạn đã được thay đổi thành công.",
     "active_account": "Kích hoạt tài khoản",
-    "tof_accept_required": "Vui lòng chọn hộp kiểm để đồng ý với các điều khoản và điều kiện của chúng tôi."    
+    "tof_accept_required": "Vui lòng chọn hộp kiểm để đồng ý với các điều khoản và điều kiện của chúng tôi.",
+    "add_more":"Thêm mới"
 }

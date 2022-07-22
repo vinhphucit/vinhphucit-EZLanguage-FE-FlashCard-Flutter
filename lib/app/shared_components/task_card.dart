@@ -21,7 +21,14 @@ class TaskCard extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(Dimens.mp),
-              child: _Title(title: title),
+              child: Column(
+                children: [
+                  _Title(title: title),
+                  _Body(
+                    title: title,
+                  )
+                ],
+              ),
             )
           ],
         ),
@@ -48,6 +55,20 @@ class _Title extends StatelessWidget {
           "Created At 06/08",
           style: Styles.subtitleText,
         ),
+      ],
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  final String title;
+  const _Body({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Color color = Colours.toColor(title);
+    return Column(
+      children: [
         SizedBox(
           height: Dimens.mm,
         ),

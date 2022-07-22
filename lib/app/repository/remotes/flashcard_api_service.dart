@@ -1,3 +1,4 @@
+import 'package:fe_ezlang_flashcard/app/models/category.dart';
 import 'package:fe_ezlang_flashcard/app/models/pageable_categories.dart';
 import 'package:fe_ezlang_flashcard/app/models/session.dart';
 import 'package:fe_ezlang_flashcard/app/models/user.dart';
@@ -14,10 +15,15 @@ class FlashcardApiService extends BaseApiService {
         await get('$_baseUrl$_categoriesEndpoint'));
   }
 
-  Future<PageableCategoriesModel> postCategory(String? title,
+  Future<CategoryModel> createCategory(String? title, String? description,
+      String? imageUrl, String? parentCategoryId) async {
+    return CategoryModel.fromJson(await post('$_baseUrl$_categoriesEndpoint',
+        {title, description, imageUrl, parentCategoryId}));
+  }
+
+  Future<CategoryModel> updateCategory(String id, String? title,
       String? description, String? imageUrl, String? parentCategoryId) async {
-    return PageableCategoriesModel.fromJson(await post(
-        '$_baseUrl$_categoriesEndpoint',
+    return CategoryModel.fromJson(await put('$_baseUrl$_categoriesEndpoint/$id',
         {title, description, imageUrl, parentCategoryId}));
   }
 }

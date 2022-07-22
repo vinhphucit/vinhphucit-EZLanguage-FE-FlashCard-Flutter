@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "activate": MessageLookupByLibrary.simpleMessage("Activate"),
         "activate_account":
             MessageLookupByLibrary.simpleMessage("Activate Account"),
+        "add_more": MessageLookupByLibrary.simpleMessage("Add More"),
         "already_have_activation_code": MessageLookupByLibrary.simpleMessage(
             "Already have activation code?"),
         "already_have_code":

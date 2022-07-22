@@ -1,5 +1,5 @@
 import 'package:fe_ezlang_flashcard/app/features/dashboard/dashboard_screen.dart';
-import 'package:fe_ezlang_flashcard/app/features/flashcard/flash_card_screen.dart';
+import 'package:fe_ezlang_flashcard/app/features/flashcard/flashcard_home/flashcard_home.dart';
 import 'package:fe_ezlang_flashcard/app/providers/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class SideMenu extends StatelessWidget {
             title: 'Flashcard',
             press: () {
               Navigator.of(context)
-                  .pushReplacementNamed(FlashCardScreen.routeName);
+                  .pushReplacementNamed(FlashCardHomeScreen.routeName);
             },
           ),
           Divider(),
