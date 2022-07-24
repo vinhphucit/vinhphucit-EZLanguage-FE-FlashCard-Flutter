@@ -21,7 +21,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     await handleResponse<void>(
         context,
         Provider.of<ForgotPasswordController>(context, listen: false)
-            .requestResetPassword(email), () {
+            .requestResetPassword(email), (_) {
       showAlertDialog(context, S.of(context).reset_password,
           S.of(context).request_reset_password_successfully_alert, () {
         Navigator.pushReplacementNamed(context, ResetPasswordScreen.routeName);

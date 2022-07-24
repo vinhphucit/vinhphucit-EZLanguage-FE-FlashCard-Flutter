@@ -21,7 +21,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
     await handleResponse<void>(
         context,
         Provider.of<ResetPasswordController>(context, listen: false)
-            .confirmResetPasswordCode(email, code, newPassword), () {
+            .confirmResetPasswordCode(email, code, newPassword), (_) {
       showAlertDialog(context, S.of(context).reset_password,
           S.of(context).new_password_changed, () {
         Navigator.pushReplacementNamed(context, SignInScreen.routeName);

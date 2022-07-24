@@ -21,14 +21,14 @@ class CreateCategoryController with ChangeNotifier {
     }
   }
 
-  Future<void> create({int? start, int? limit, String? query}) async {
+  Future<CategoryModel?> create({String? title, String? description}) async {
     try {
       _isLoading = true;
       notifyListeners();
-      var response = await Repository.getInstance()
-          .getCategories(limit: limit, query: query, start: start);
-      _categories = response.items ?? [];
+      return await Repository.getInstance()
+          .createCategory(title: title, description: description);
     } catch (e) {
+      print(e);
     } finally {
       _isLoading = false;
       notifyListeners();

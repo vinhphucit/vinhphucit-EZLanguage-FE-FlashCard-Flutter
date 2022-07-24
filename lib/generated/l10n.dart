@@ -479,6 +479,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Title`
+  String get title {
+    return Intl.message(
+      'Title',
+      name: 'title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continues {
+    return Intl.message(
+      'Continue',
+      name: 'continues',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title is invalid`
+  String get invalid_title {
+    return Intl.message(
+      'Title is invalid',
+      name: 'invalid_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description is invalid`
+  String get invalid_description {
+    return Intl.message(
+      'Description is invalid',
+      name: 'invalid_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

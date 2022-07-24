@@ -4,10 +4,11 @@ import 'package:fe_ezlang_flashcard/app/utils/snackbar_utils.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseScreen {
-  handleResponse<T>(BuildContext context, Future<T> f, [Function? next]) async {
+  handleResponse<T>(BuildContext context, Future<T> f,
+      [Function(dynamic data)? next]) async {
     try {
       T t = await f;
-      if (next != null) next();
+      if (next != null) next(t);
       return t;
     } on HttpException catch (e) {
       showSnackBar(e.toString(), context);

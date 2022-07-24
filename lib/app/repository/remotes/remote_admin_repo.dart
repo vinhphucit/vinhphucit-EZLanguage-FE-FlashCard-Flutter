@@ -1,5 +1,7 @@
 import 'package:fe_ezlang_flashcard/app/models/category.dart';
+import 'package:fe_ezlang_flashcard/app/models/flashcard.dart';
 import 'package:fe_ezlang_flashcard/app/models/pageable_categories.dart';
+import 'package:fe_ezlang_flashcard/app/models/pageable_flashcards.dart';
 import 'package:fe_ezlang_flashcard/app/models/session.dart';
 import 'package:fe_ezlang_flashcard/app/models/user.dart';
 import 'package:fe_ezlang_flashcard/app/repository/flashcard_data_source.dart';
@@ -76,5 +78,25 @@ class RemoteAdminRepo implements AuthDataSource, FlashCardDataSource {
       {String? title, String? description, String? imageUrl}) async {
     return await _flashcardApiService.updateCategory(
         id, title, description, imageUrl, null);
+  }
+
+  @override
+  Future<FlashcardModel> createFlashcard(String categoryId,
+      {String? title, String? description}) async {
+    return await _flashcardApiService.createFlashcard(
+        categoryId, title, description);
+  }
+
+  @override
+  Future<PageableFlashcardsModel> getFlashcards(String categoryId,
+      {int? limit, String? query, int? start}) async {
+    return await _flashcardApiService.getFlashcards(
+        categoryId: categoryId, limit: limit, start: start, query: query);
+  }
+
+  @override
+  Future<FlashcardModel> updateFlashcard(String id,
+      {String? title, String? description}) async {
+    return await _flashcardApiService.updateFlashcard(id, title, description);
   }
 }

@@ -35,9 +35,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "continues": MessageLookupByLibrary.simpleMessage("Continue"),
         "create_an_account":
             MessageLookupByLibrary.simpleMessage("Create an Account"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "do_not_have_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account yet? "),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -47,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgot_password_consolation": MessageLookupByLibrary.simpleMessage(
             "Forgot your password? That\'s okay, it happens to everyone!\nPlease provide your email to reset your password."),
         "hey_there": MessageLookupByLibrary.simpleMessage("Hey There,"),
+        "invalid_description":
+            MessageLookupByLibrary.simpleMessage("Description is invalid"),
         "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email!"),
         "invalid_first_name":
             MessageLookupByLibrary.simpleMessage("Invalid first name"),
@@ -56,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password is too short!"),
         "invalid_password_reenter": MessageLookupByLibrary.simpleMessage(
             "Passwords did not match. Try again."),
+        "invalid_title":
+            MessageLookupByLibrary.simpleMessage("Title is invalid"),
         "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
         "new_password": MessageLookupByLibrary.simpleMessage("New pasword"),
         "new_password_changed": MessageLookupByLibrary.simpleMessage(
@@ -78,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signup": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signup_successfully_alert": MessageLookupByLibrary.simpleMessage(
             "Congratulation! \nYou\'ve created your own account successfully. We will send you an activation code in a moment, please check your email and re-enter that code in the next screen to activate your account. \nThanks and happy learning."),
+        "title": MessageLookupByLibrary.simpleMessage("Title"),
         "toc_and": MessageLookupByLibrary.simpleMessage(" and "),
         "toc_conditions_of_use":
             MessageLookupByLibrary.simpleMessage("Conditions of Use"),

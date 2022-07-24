@@ -41,7 +41,12 @@
     "new_password_changed":"Congratulation! \nYour new password has been changed successfully. ",
     "activate_account":"Activate Account",
     "tof_accept_required":"Please check the checkbox to agree with our terms and conditions.",
-    "add_more":"Add More"
+    "add_more":"Add More",
+    "title":"Title",
+    "description": "Description",
+    "continues": "Continue",
+    "invalid_title": "Title is invalid",
+    "invalid_description": "Description is invalid"
     
     
 }

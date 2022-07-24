@@ -20,8 +20,8 @@ class _SignInScreenState extends State<SignInScreen> with BaseScreen {
     await handleResponse<void>(
         context,
         Provider.of<SignInController>(context, listen: false)
-            .signIn(email, password), () {
-      Navigator.pushNamed(context, DashboardScreen.routeName);
+            .signIn(email, password), (_) {
+      Navigator.pushReplacementNamed(context, DashboardScreen.routeName);
     });
   }
 

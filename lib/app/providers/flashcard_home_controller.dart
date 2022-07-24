@@ -11,9 +11,9 @@ class FlashCardHomeController with ChangeNotifier {
     return _isLoadingCategories;
   }
 
-  void set _setLoadingCategory(bool loading) {
+  void _setLoadingCategory(bool loading) {
     if (loading != _isLoadingCategories) {
-      _isLoadingCategories = isLoading;
+      _isLoadingCategories = loading;
       notifyListeners();
     }
   }
@@ -30,13 +30,18 @@ class FlashCardHomeController with ChangeNotifier {
 
   Future<void> getCategories({int? start, int? limit, String? query}) async {
     try {
-      _setLoadingCategory = true;
+      _setLoadingCategory(true);
       var response = await Repository.getInstance()
           .getCategories(limit: limit, query: query, start: start);
       _categories = response.items ?? [];
     } catch (e) {
     } finally {
-      _setLoadingCategory = false;
+      _setLoadingCategory(false);
     }
+  }
+
+  void addToCategory(CategoryModel data) async {
+    _categories = [data, ..._categories];
+    notifyListeners();
   }
 }

@@ -21,7 +21,7 @@ class _ActivateAccountScreenState extends State<ActivateAccountScreen>
     await handleResponse<void>(
         context,
         Provider.of<ActivateAccountController>(context, listen: false)
-            .activateByCode(email, code), () {
+            .activateByCode(email, code), (v) {
       showAlertDialog(context, S.of(context).reset_password,
           S.of(context).new_password_changed, () {
         Navigator.pushReplacementNamed(context, SignInScreen.routeName);

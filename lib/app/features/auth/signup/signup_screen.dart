@@ -22,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> with BaseScreen {
     await handleResponse<void>(
         context,
         Provider.of<SignUpController>(context, listen: false)
-            .signUp(email, password, firstName, lastName), () {
+            .signUp(email, password, firstName, lastName), (_) {
       showAlertDialog(context, S.of(context).signup,
           S.of(context).signup_successfully_alert, () {
         Navigator.pushNamed(context, ActivateAccountScreen.routeName);
