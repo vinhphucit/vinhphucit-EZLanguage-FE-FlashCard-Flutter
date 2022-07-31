@@ -1,4 +1,5 @@
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
+import 'package:fe_ezlang_flashcard/app/features/flashcard/flashcard_study/flashcard_study_screen.dart';
 import 'package:fe_ezlang_flashcard/app/models/category.dart';
 import 'package:fe_ezlang_flashcard/app/providers/flashcards_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/form_button.dart';
@@ -29,16 +30,28 @@ class FlashcardsDesktop extends StatelessWidget {
             const SizedBox(
               height: Dimens.mm,
             ),
-            TextButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                            title: Text("New Flashcard"),
-                            content: _NewFlashCard(category: category),
-                          ));
-                },
-                child: Text("New")),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                                title: Text("New Flashcard"),
+                                content: _NewFlashCard(category: category),
+                              ));
+                    },
+                    child: Text("New")),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, FlashcardStudyScreen.routeName,
+                          arguments: category);
+                    },
+                    child: Text("Learn")),
+              ],
+            ),
             Container(
               child: Consumer<FlashcardsController>(
                 builder: (context, value, child) {

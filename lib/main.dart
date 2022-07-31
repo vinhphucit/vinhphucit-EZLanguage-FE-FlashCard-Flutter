@@ -11,6 +11,7 @@ import 'package:fe_ezlang_flashcard/app/features/auth/reset_password/reset_passw
 import 'package:fe_ezlang_flashcard/app/features/auth/signin/signin_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/auth/signup/signup_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/flashcard/flashcard_home/flashcard_home.dart';
+import 'package:fe_ezlang_flashcard/app/features/flashcard/flashcard_study/flashcard_study_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/flashcard/flashcards/flashcards_screen.dart';
 import 'package:fe_ezlang_flashcard/app/features/splash/splash_screen.dart';
 import 'package:fe_ezlang_flashcard/app/models/category.dart';
@@ -19,6 +20,7 @@ import 'package:fe_ezlang_flashcard/app/providers/app_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/create_category_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/dashboard_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/flashcard_home_controller.dart';
+import 'package:fe_ezlang_flashcard/app/providers/flashcard_study_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/flashcards_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/forgot_password_controller.dart';
 import 'package:fe_ezlang_flashcard/app/providers/reset_password_controller.dart';
@@ -79,6 +81,9 @@ class FlashCardApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => FlashcardsController(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => FlashcardStudyController(),
+        ),
       ],
       child: MaterialApp(
         onGenerateRoute: (settings) {
@@ -87,6 +92,13 @@ class FlashCardApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) {
                 return FlashcardsScreen(category: args);
+              },
+            );
+          } else if (settings.name == FlashcardStudyScreen.routeName) {
+            final args = settings.arguments as CategoryModel;
+            return MaterialPageRoute(
+              builder: (context) {
+                return FlashcardStudyScreen(category: args);
               },
             );
           }

@@ -7,7 +7,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class Header extends StatelessWidget {
   VoidCallback? onPressedMenu;
-  Header({Key? key, required this.onPressedMenu}) : super(key: key);
+  Widget? child;
+  Header({Key? key, this.onPressedMenu, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +21,12 @@ class Header extends StatelessWidget {
               icon: const Icon(Icons.arrow_back)),
         if (!Navigator.canPop(context))
           IconButton(onPressed: onPressedMenu, icon: const Icon(Icons.menu)),
-        const SizedBox(width: Dimens.sm),
-        const TimeText(),
-        const SizedBox(width: Dimens.lm),
-        Expanded(child: SearchField()),
+        if (child != null) child!,
+
+        // const SizedBox(width: Dimens.sm),
+        // const TimeText(),
+        // const SizedBox(width: Dimens.lm),
+        // Expanded(child: SearchField()),
       ],
     );
   }

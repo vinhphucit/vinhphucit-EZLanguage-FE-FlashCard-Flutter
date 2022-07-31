@@ -1,4 +1,10 @@
 # This is a generated file; do not edit or check into version control.
+audioplayers=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-1.0.1/
+audioplayers_android=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers_android-1.0.1/
+audioplayers_darwin=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers_darwin-1.0.1/
+audioplayers_linux=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers_linux-1.0.0/
+audioplayers_web=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers_web-1.0.0/
+audioplayers_windows=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers_windows-1.0.0/
 integration_test=/Users/tranvinhphuc/Developments/flutter/packages/integration_test/
 path_provider=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.11/
 path_provider_android=/Users/tranvinhphuc/Developments/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.16/

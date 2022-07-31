@@ -23,6 +23,6 @@ class Styles {
       TextStyle(fontWeight: FontWeight.bold, fontSize: Dimens.xlts);
   static var titleText =
       TextStyle(fontWeight: FontWeight.bold, fontSize: Dimens.mts);
-  static var subtitleText =
-      TextStyle(fontWeight: FontWeight.normal, fontSize: Dimens.sts);
+  static var subtitleText = TextStyle(
+      fontWeight: FontWeight.normal, fontSize: Dimens.sts, color: Colors.grey);
 }
