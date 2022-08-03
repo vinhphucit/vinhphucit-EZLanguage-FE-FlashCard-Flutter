@@ -47,7 +47,12 @@ class FlashcardsDesktop extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                           context, FlashcardStudyScreen.routeName,
-                          arguments: category);
+                          arguments: FlashcardStudyScreenArguments(
+                              category: category!,
+                              flashcards: Provider.of<FlashcardsController>(
+                                      context,
+                                      listen: false)
+                                  .flashcards));
                     },
                     child: Text("Learn")),
               ],

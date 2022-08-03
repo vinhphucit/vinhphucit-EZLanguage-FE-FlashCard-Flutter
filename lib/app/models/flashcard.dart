@@ -1,3 +1,4 @@
+import 'package:fe_ezlang_flashcard/app/models/key_value.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'flashcard.g.dart';
 
@@ -6,6 +7,10 @@ class FlashcardModel {
   String? id;
   String? title;
   String? description;
+  List<KeyValueModel>? imageUrls;
+  List<KeyValueModel>? soundUrls;
+  List<KeyValueModel>? references;
+  String? masteredLevel;
   String? userId;
   String? createdAt;
   String? updatedAt;

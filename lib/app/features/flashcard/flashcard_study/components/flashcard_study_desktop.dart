@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/dimens.dart';
 import 'package:fe_ezlang_flashcard/app/config/resources/styles.dart';
 import 'package:fe_ezlang_flashcard/app/models/category.dart';
+import 'package:fe_ezlang_flashcard/app/models/flashcard.dart';
 import 'package:fe_ezlang_flashcard/app/providers/flashcard_study_controller.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/circle_studied_dot.dart';
 import 'package:fe_ezlang_flashcard/app/shared_components/header.dart';
@@ -14,16 +16,17 @@ import 'package:fe_ezlang_flashcard/app/utils/extensions/globalkey_ex.dart';
 
 class FlashcardStudyDesktop extends StatefulWidget {
   CategoryModel? category;
-
-  FlashcardStudyDesktop({Key? key, this.category}) : super(key: key);
+  List<FlashcardModel>? flashcards;
+  FlashcardStudyDesktop({Key? key, this.category, this.flashcards})
+      : super(key: key);
 
   @override
   State<FlashcardStudyDesktop> createState() => _FlashcardStudyDesktopState();
 }
 
 class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
+  int currentCardIndex = 0;
   bool isCardOpened = false;
-  double? _ratingValue;
   AudioPlayer? _audioPlayer;
   var bottom = .0, top = .0;
   var headerKey = GlobalKey(),
@@ -31,6 +34,22 @@ class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
       overViewKey = GlobalKey();
   var panY = 0.0;
   var scrollController = ScrollController();
+
+  String? get currentCardImage {
+    if ((currentCard?.imageUrls?.length ?? 0) > 0) {
+      return currentCard?.imageUrls?.first.value;
+    }
+    return null;
+  }
+
+  FlashcardModel? get currentCard {
+    return widget.flashcards?.elementAt(currentCardIndex);
+  }
+
+  set currentCardLevel(int level) {
+    widget.flashcards?.elementAt(currentCardIndex).masteredLevel =
+        level.toString();
+  }
 
   @override
   void initState() {
@@ -111,7 +130,7 @@ class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
               }),
         if (isCardOpened)
           RatingBar(
-              initialRating: _ratingValue ?? 0,
+              initialRating: double.parse(currentCard?.masteredLevel ?? "0"),
               direction: Axis.horizontal,
               allowHalfRating: false,
               itemCount: 5,
@@ -127,9 +146,9 @@ class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
                     color: Colors.orange,
                   )),
               onRatingUpdate: (value) {
-                setState(() {
-                  _ratingValue = value;
-                });
+                currentCardLevel = value.floor();
+                currentCardIndex++;
+                setState(() {});
               })
         else
           Container(
@@ -190,19 +209,18 @@ class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
         child: Stack(
           fit: StackFit.loose,
           children: [
-            Container(
+            CachedNetworkImage(
               width: double.infinity,
               height: (size.height - top - bottom) / 2 * 3 / 4,
-              decoration: BoxDecoration(
-                  // borderRadius: BorderRadius.circular(Dimens.lRadius),
-                  image: DecorationImage(
-                      image: Image.network(
-                        "http://cdn.differencebetween.net/wp-content/uploads/2018/03/Difference-Between-Institute-and-University--768x520.jpg",
-                        errorBuilder: (context, error, stackTrace) {
-                          return Text("HELLO");
-                        },
-                      ).image,
-                      fit: BoxFit.cover)),
+              imageUrl:
+                  "https://png.pngtree.com/png-clipart/20210309/original/pngtree-a-british-short-blue-and-white-cat-png-image_5803762.jpgs",
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Container(
+                  color: Colors.black,
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: Image.asset('assets/images/placeholder.png',
+                      fit: BoxFit.fitWidth)),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -264,14 +282,9 @@ class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "institute",
+                                currentCard?.title ?? '',
                                 style: TextStyle(fontSize: Dimens.lts),
                               ),
-                              if (!isCardOpened)
-                                Text(
-                                  "/ˈɪn.stə.tuːt/",
-                                  style: TextStyle(fontSize: Dimens.mts),
-                                ),
                             ]),
                       ),
                     ),
@@ -334,7 +347,7 @@ class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "institute \n noun [ C ] \nUK  /ˈɪn.stɪ.tʃuːt/ US  /ˈɪn.stə.tuːt/ \n  B2 \n an organization where people do a particular type of scientific, educational, or social work, or the buildings that it uses: \nthe Massachusetts Institute of Technology \n ",
+                              currentCard?.description ?? '',
                               style: TextStyle(color: Colors.grey),
                             ),
                             SizedBox(
@@ -357,18 +370,18 @@ class _FlashcardStudyDesktopState extends State<FlashcardStudyDesktop> {
       key: overViewKey,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        CircleStudiedDot(color: Colors.blue),
-        CircleStudiedDot(color: Colors.blue),
-        CircleStudiedDot(color: Colors.blue),
-        CircleStudiedDot(color: Colors.blue),
-        CircleStudiedDot(color: Colors.blue),
-        CircleStudiedDot(color: Colors.blue),
-        CircleStudiedDot(
-          color: Colors.blue,
-          selected: true,
-        ),
-        CircleStudiedDot(color: Colors.blue),
-        CircleStudiedDot(color: Colors.blue),
+        for (var i = 0; i < (widget.flashcards?.length ?? 0); i++)
+          if (i == currentCardIndex)
+            CircleStudiedDot(
+              level: int.parse(
+                  widget.flashcards?.elementAt(i).masteredLevel ?? "0"),
+              selected: true,
+            )
+          else
+            CircleStudiedDot(
+              level: int.parse(
+                  widget.flashcards?.elementAt(i).masteredLevel ?? "0"),
+            )
       ],
     );
   }

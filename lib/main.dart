@@ -95,10 +95,10 @@ class FlashCardApp extends StatelessWidget {
               },
             );
           } else if (settings.name == FlashcardStudyScreen.routeName) {
-            final args = settings.arguments as CategoryModel;
+            final args = settings.arguments as FlashcardStudyScreenArguments;
             return MaterialPageRoute(
               builder: (context) {
-                return FlashcardStudyScreen(category: args);
+                return FlashcardStudyScreen(arguments: args);
               },
             );
           }
